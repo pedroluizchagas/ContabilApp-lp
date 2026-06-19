@@ -42,7 +42,7 @@ export default function Reveal({
   return (
     <Tag
       ref={ref}
-      className={`reveal ${visible ? "is-visible" : ""} ${className}`}
+      className={`reveal ${visible ? "in" : ""} ${className}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {children}

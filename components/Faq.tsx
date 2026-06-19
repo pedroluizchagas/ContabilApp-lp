@@ -1,12 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { IconPlus } from "./icons";
 
 const ITEMS = [
   {
     q: "O ContabilApp funciona com o meu software contábil?",
-    a: "A plataforma processa os PDFs gerados pelos principais sistemas contábeis do mercado (como Domínio, Alterdata e Questor). Fale com a gente para validar o seu caso.",
+    a: "A plataforma processa os PDFs gerados pelos principais sistemas contábeis do mercado, como Domínio, Alterdata e Questor. Fale com a gente para validar o seu caso.",
   },
   {
     q: "A assinatura digital tem validade jurídica?",
@@ -30,7 +29,7 @@ const ITEMS = [
   },
   {
     q: "Como começo?",
-    a: "É só entrar em contato pelo WhatsApp ou preencher o formulário. Ajudamos você na configuração inicial.",
+    a: "É só falar com a gente pelo WhatsApp ou preencher o formulário. Ajudamos você na configuração inicial.",
   },
 ];
 
@@ -38,37 +37,38 @@ export default function Faq() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <div className="mx-auto mt-12 max-w-3xl">
+    <div>
       {ITEMS.map((item, i) => {
         const isOpen = open === i;
         return (
-          <div
-            key={item.q}
-            className="border-b border-[var(--color-border)]"
-          >
+          <div key={item.q} className="rule">
             <button
               onClick={() => setOpen(isOpen ? null : i)}
-              className="flex w-full items-center justify-between gap-4 py-5 text-left"
+              className="group flex w-full items-start gap-5 py-6 text-left md:gap-8"
               aria-expanded={isOpen}
             >
-              <span className="font-display text-base font-medium md:text-lg">
+              <span className="index mt-1.5 shrink-0">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <span className="flex-1 font-grotesk text-lg font-medium md:text-xl">
                 {item.q}
               </span>
               <span
-                className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border border-[var(--color-border)] transition-transform duration-300 ${
-                  isOpen ? "rotate-45 border-[var(--color-accent)] text-[var(--color-accent)]" : "text-[var(--color-muted)]"
+                className={`relative mt-2 h-3.5 w-3.5 shrink-0 transition-transform duration-500 ${
+                  isOpen ? "rotate-45" : ""
                 }`}
               >
-                <IconPlus width={16} height={16} />
+                <span className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-current" />
+                <span className="absolute top-1/2 left-0 h-px w-full -translate-y-1/2 bg-current" />
               </span>
             </button>
             <div
-              className={`grid transition-all duration-300 ease-out ${
+              className={`grid transition-all duration-500 ease-out ${
                 isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
               }`}
             >
               <div className="overflow-hidden">
-                <p className="pb-5 pr-12 text-sm leading-relaxed text-[var(--color-muted)] md:text-base">
+                <p className="max-w-2xl pb-7 pl-[3.25rem] pr-8 leading-relaxed text-[var(--color-dim)] md:pl-[4.5rem]">
                   {item.a}
                 </p>
               </div>

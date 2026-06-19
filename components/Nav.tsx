@@ -1,14 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { IconWhatsApp } from "./icons";
 
 const LINKS = [
-  { href: "#como-funciona", label: "Como funciona" },
-  { href: "#funcionalidades", label: "Funcionalidades" },
-  { href: "#seguranca", label: "Segurança" },
-  { href: "#planos", label: "Planos" },
-  { href: "#faq", label: "FAQ" },
+  { href: "#solucao", label: "Solução", n: "01" },
+  { href: "#processo", label: "Processo", n: "02" },
+  { href: "#recursos", label: "Recursos", n: "03" },
+  { href: "#seguranca", label: "Segurança", n: "04" },
+  { href: "#planos", label: "Planos", n: "05" },
 ];
 
 const WHATS = "https://wa.me/55XXXXXXXXXXX";
@@ -18,7 +17,7 @@ export default function Nav() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16);
+    const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -26,28 +25,28 @@ export default function Nav() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
         scrolled
-          ? "border-b border-[var(--color-border)] bg-[rgba(8,8,10,0.72)] backdrop-blur-xl"
-          : "border-b border-transparent bg-transparent"
+          ? "border-b border-[var(--color-line)] bg-[rgba(10,9,8,0.7)] backdrop-blur-xl"
+          : "border-b border-transparent"
       }`}
     >
-      <nav className="container-px mx-auto flex h-[68px] max-w-7xl items-center justify-between">
+      <nav className="wrap flex h-[72px] items-center justify-between">
         <a href="#top" className="flex items-center gap-2.5" aria-label="ContabilApp">
-          <span className="grid h-8 w-8 place-items-center rounded-lg bg-[var(--color-accent)] text-[var(--color-accent-ink)] font-display text-lg font-bold">
+          <span className="grid h-7 w-7 place-items-center rounded-full border border-[var(--color-line-2)] font-grotesk text-sm font-semibold">
             C
           </span>
-          <span className="font-display text-lg font-semibold tracking-tight">
+          <span className="font-grotesk text-[0.95rem] font-medium tracking-tight">
             ContabilApp
           </span>
         </a>
 
-        <ul className="hidden items-center gap-8 md:flex">
+        <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-9 md:flex">
           {LINKS.map((l) => (
             <li key={l.href}>
               <a
                 href={l.href}
-                className="text-sm text-[var(--color-muted)] transition-colors hover:text-[var(--color-text)]"
+                className="font-grotesk text-[0.85rem] text-[var(--color-dim)] transition-colors hover:text-[var(--color-ink)]"
               >
                 {l.label}
               </a>
@@ -55,59 +54,70 @@ export default function Nav() {
           ))}
         </ul>
 
-        <div className="hidden items-center gap-3 md:flex">
-          <a href="#contato" className="text-sm text-[var(--color-muted)] transition-colors hover:text-[var(--color-text)]">
-            Entrar em contato
-          </a>
-          <a href={WHATS} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-            <IconWhatsApp width={16} height={16} />
-            Falar no WhatsApp
+        <div className="hidden items-center md:flex">
+          <a
+            href={WHATS}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-solid"
+          >
+            Falar com a gente
           </a>
         </div>
 
-        {/* mobile toggle */}
         <button
           onClick={() => setOpen((v) => !v)}
-          className="flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--color-border)] md:hidden"
+          className="flex h-10 w-10 items-center justify-center md:hidden"
           aria-label="Abrir menu"
           aria-expanded={open}
         >
           <div className="flex flex-col gap-[5px]">
-            <span className={`h-[1.5px] w-5 bg-current transition-transform ${open ? "translate-y-[6.5px] rotate-45" : ""}`} />
-            <span className={`h-[1.5px] w-5 bg-current transition-opacity ${open ? "opacity-0" : ""}`} />
-            <span className={`h-[1.5px] w-5 bg-current transition-transform ${open ? "-translate-y-[6.5px] -rotate-45" : ""}`} />
+            <span
+              className={`h-px w-6 bg-current transition-transform duration-300 ${
+                open ? "translate-y-[6px] rotate-45" : ""
+              }`}
+            />
+            <span
+              className={`h-px w-6 bg-current transition-opacity duration-300 ${
+                open ? "opacity-0" : ""
+              }`}
+            />
+            <span
+              className={`h-px w-6 bg-current transition-transform duration-300 ${
+                open ? "-translate-y-[6px] -rotate-45" : ""
+              }`}
+            />
           </div>
         </button>
       </nav>
 
-      {/* mobile menu */}
       <div
-        className={`overflow-hidden border-t border-[var(--color-border)] bg-[rgba(8,8,10,0.95)] backdrop-blur-xl transition-[max-height] duration-300 md:hidden ${
-          open ? "max-h-96" : "max-h-0 border-t-transparent"
+        className={`overflow-hidden border-t border-[var(--color-line)] bg-[rgba(10,9,8,0.96)] backdrop-blur-xl transition-[max-height] duration-500 md:hidden ${
+          open ? "max-h-[420px]" : "max-h-0 border-t-transparent"
         }`}
       >
-        <ul className="container-px mx-auto flex max-w-7xl flex-col gap-1 py-4">
+        <ul className="wrap flex flex-col py-3">
           {LINKS.map((l) => (
-            <li key={l.href}>
+            <li key={l.href} className="rule first:border-t-0">
               <a
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="block rounded-lg px-3 py-3 text-[var(--color-muted)] transition-colors hover:bg-white/5 hover:text-[var(--color-text)]"
+                className="flex items-center justify-between py-4"
               >
-                {l.label}
+                <span className="font-grotesk text-base">{l.label}</span>
+                <span className="index">({l.n})</span>
               </a>
             </li>
           ))}
-          <li className="mt-2 px-3">
+          <li className="mt-4">
             <a
               href={WHATS}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setOpen(false)}
-              className="btn btn-primary w-full"
+              className="btn btn-solid w-full"
             >
-              <IconWhatsApp width={16} height={16} />
-              Falar no WhatsApp
+              Falar com a gente
             </a>
           </li>
         </ul>
