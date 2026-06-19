@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Space_Grotesk, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -8,15 +8,24 @@ const inter = Inter({
   display: "swap",
 });
 
-const display = Space_Grotesk({
+const grotesk = Space_Grotesk({
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-display",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-grotesk",
+  display: "swap",
+});
+
+const serif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-serif",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "ContabilApp — Holerites e recibos de férias automáticos para contabilidades",
+  title:
+    "ContabilApp — Holerites e recibos de férias automáticos para contabilidades",
   description:
     "Desmembre o PDF da folha automaticamente, entregue cada holerite ao funcionário no celular e colete a assinatura digital com validade jurídica. Rastreabilidade em tempo real e total conformidade com a LGPD.",
   keywords: [
@@ -42,8 +51,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR" className={`${inter.variable} ${display.variable}`}>
-      <body>{children}</body>
+    <html
+      lang="pt-BR"
+      className={`${inter.variable} ${grotesk.variable} ${serif.variable}`}
+    >
+      <body className="grain">{children}</body>
     </html>
   );
 }

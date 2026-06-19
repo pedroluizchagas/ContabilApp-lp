@@ -1,200 +1,189 @@
 import Reveal from "./Reveal";
-import {
-  IconWhatsApp,
-  IconArrowRight,
-  IconCheck,
-  IconBell,
-} from "./icons";
+import { IconArrowRight } from "./icons";
 
 const WHATS = "https://wa.me/55XXXXXXXXXXX";
 
 export default function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28">
-      {/* background */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-grid" />
-        <div className="glow absolute left-1/2 top-[-120px] h-[520px] w-[820px] -translate-x-1/2 rounded-full" />
-      </div>
+    <section id="top" className="relative overflow-hidden">
+      <div className="wrap pt-36 md:pt-44">
+        {/* meta row */}
+        <Reveal className="flex items-center justify-between">
+          <span className="eyebrow">Plataforma para contabilidades</span>
+          <span className="index hidden sm:block">Est. 2026 — Brasil</span>
+        </Reveal>
 
-      <div className="container-px mx-auto max-w-7xl">
-        <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
-          <Reveal>
-            <span className="chip">
-              <span className="pulse-dot inline-block h-1.5 w-1.5 rounded-full bg-[var(--color-accent)]" />
-              Feito para contabilidades
+        {/* headline */}
+        <Reveal className="mt-8 md:mt-12">
+          <h1 className="display h1 text-balance">
+            <span className="line-mask">
+              <span>Holerites entregues</span>
             </span>
-          </Reveal>
+            <span className="line-mask">
+              <span>
+                de forma automática,{" "}
+              </span>
+            </span>
+            <span className="line-mask">
+              <span>
+                individual e <span className="serif-i">assinada</span>.
+              </span>
+            </span>
+          </h1>
+        </Reveal>
 
-          <Reveal delay={80}>
-            <h1 className="mt-6 font-display text-4xl font-semibold leading-[1.05] tracking-tight md:text-6xl">
-              <span className="text-gradient">Holerites entregues</span>
-              <br />
-              de forma automática,{" "}
-              <span className="text-[var(--color-accent)]">individual e assinada</span>.
-            </h1>
-          </Reveal>
-
-          <Reveal delay={160}>
-            <p className="mt-6 max-w-xl text-base text-[var(--color-muted)] md:text-lg">
+        {/* supporting row */}
+        <div className="mt-10 grid gap-8 border-t border-[var(--color-line)] pt-8 md:mt-14 md:grid-cols-12 md:items-start">
+          <Reveal delay={120} className="md:col-span-7">
+            <p className="lede max-w-xl">
               O ContabilApp desmembra o PDF da folha em documentos individuais,
-              entrega a cada funcionário no celular, coleta a assinatura digital
-              com validade jurídica e mostra, em tempo real, quem já visualizou e
-              assinou.
+              entrega a cada funcionário no celular e coleta a assinatura digital
+              com validade jurídica — com a contabilidade no controle de ponta a
+              ponta.
             </p>
           </Reveal>
-
-          <Reveal delay={240}>
-            <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row">
-              <a href={WHATS} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-                <IconWhatsApp width={16} height={16} />
-                Falar no WhatsApp
-              </a>
-              <a href="#como-funciona" className="btn btn-ghost">
-                Ver como funciona
+          <Reveal delay={200} className="md:col-span-5 md:flex md:flex-col md:items-end">
+            <div className="flex flex-col gap-3 sm:flex-row md:flex-col md:items-end">
+              <a
+                href={WHATS}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-solid"
+              >
+                Falar com a gente
                 <IconArrowRight width={16} height={16} />
+              </a>
+              <a href="#processo" className="btn btn-line">
+                Ver o processo
               </a>
             </div>
           </Reveal>
-
-          <Reveal delay={320}>
-            <ul className="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-[var(--color-faint)]">
-              {["Teste grátis por 30 dias", "Sem fidelidade", "Conforme a LGPD"].map(
-                (t) => (
-                  <li key={t} className="flex items-center gap-1.5">
-                    <IconCheck width={15} height={15} className="text-[var(--color-accent)]" />
-                    {t}
-                  </li>
-                )
-              )}
-            </ul>
-          </Reveal>
         </div>
+      </div>
 
-        {/* product mockup */}
-        <Reveal delay={200} className="mt-16 md:mt-20">
-          <HeroMockup />
+      {/* product visual */}
+      <div className="wrap mt-16 md:mt-24">
+        <Reveal>
+          <HeroVisual />
         </Reveal>
+      </div>
 
-        {/* logos marquee */}
-        <Reveal delay={120} className="mt-16">
-          <LogoMarquee />
-        </Reveal>
+      {/* metric band */}
+      <div className="wrap mt-16 md:mt-24">
+        <MetricBand />
+      </div>
+
+      {/* logos */}
+      <div className="mt-16 md:mt-24">
+        <LogoMarquee />
       </div>
     </section>
   );
 }
 
-function HeroMockup() {
+function HeroVisual() {
   const rows = [
-    { name: "Ana Beatriz Souza", role: "Recursos Humanos", status: "assinado" },
-    { name: "Carlos Henrique Lima", role: "Operações", status: "visualizado" },
-    { name: "Fernanda Oliveira", role: "Comercial", status: "assinado" },
-    { name: "João Pedro Martins", role: "Financeiro", status: "enviado" },
-    { name: "Mariana Costa", role: "Logística", status: "assinado" },
-  ] as const;
+    { name: "Ana Beatriz Souza", dept: "Recursos Humanos", status: "Assinado", t: "há 2 min" },
+    { name: "Carlos Henrique Lima", dept: "Operações", status: "Visualizado", t: "há 8 min" },
+    { name: "Fernanda Oliveira", dept: "Comercial", status: "Assinado", t: "há 12 min" },
+    { name: "João Pedro Martins", dept: "Financeiro", status: "Enviado", t: "há 20 min" },
+    { name: "Mariana Costa", dept: "Logística", status: "Assinado", t: "há 26 min" },
+  ];
 
-  const badge = (status: string) => {
-    if (status === "assinado")
-      return "border-[var(--color-accent)]/30 bg-[var(--color-accent)]/10 text-[var(--color-accent)]";
-    if (status === "visualizado")
-      return "border-sky-400/30 bg-sky-400/10 text-sky-300";
-    return "border-white/10 bg-white/5 text-[var(--color-muted)]";
-  };
+  const dot = (s: string) =>
+    s === "Assinado"
+      ? "bg-[var(--color-bone)]"
+      : s === "Visualizado"
+      ? "bg-[var(--color-dim)]"
+      : "bg-[var(--color-faint)]";
 
   return (
-    <div className="relative mx-auto max-w-5xl">
-      <div className="glow absolute inset-x-10 -bottom-10 top-20 -z-10 rounded-full opacity-60" />
-      <div className="card overflow-hidden p-2 shadow-2xl">
-        {/* window bar */}
-        <div className="flex items-center gap-2 px-4 py-3">
-          <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
-          <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
-          <span className="h-3 w-3 rounded-full bg-[#28c840]" />
-          <span className="ml-3 text-xs text-[var(--color-faint)]">
-            ContabilApp · Painel da contabilidade
-          </span>
+    <div className="panel overflow-hidden rounded-[14px]">
+      {/* window chrome */}
+      <div className="flex items-center justify-between border-b border-[var(--color-line)] px-5 py-3.5">
+        <div className="flex items-center gap-2">
+          <span className="h-2.5 w-2.5 rounded-full border border-[var(--color-line-2)]" />
+          <span className="h-2.5 w-2.5 rounded-full border border-[var(--color-line-2)]" />
+          <span className="h-2.5 w-2.5 rounded-full border border-[var(--color-line-2)]" />
         </div>
+        <span className="index">contabilapp.app / painel</span>
+        <span className="hidden sm:block index">Folha · Jun 2026</span>
+      </div>
 
-        <div className="grid gap-px overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-border)] md:grid-cols-[1fr_320px]">
-          {/* main panel */}
-          <div className="bg-[var(--color-bg-soft)] p-5">
-            <div className="mb-4 flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium">Folha · Junho/2026</p>
-                <p className="text-xs text-[var(--color-faint)]">
-                  Distribuidora Aurora Ltda · 48 funcionários
-                </p>
-              </div>
-              <span className="chip text-xs">Holerite</span>
+      <div className="grid md:grid-cols-[1.55fr_1fr]">
+        {/* table */}
+        <div className="border-b border-[var(--color-line)] p-5 md:border-b-0 md:border-r">
+          <div className="mb-5 flex items-end justify-between">
+            <div>
+              <p className="font-grotesk text-sm">Distribuidora Aurora Ltda</p>
+              <p className="index mt-1">48 funcionários · holerite</p>
             </div>
+            <span className="eyebrow">Em andamento</span>
+          </div>
 
-            <div className="overflow-hidden rounded-xl border border-[var(--color-border)]">
-              {rows.map((r, i) => (
-                <div
-                  key={r.name}
-                  className={`flex items-center justify-between gap-3 px-4 py-3 ${
-                    i !== rows.length - 1 ? "border-b border-[var(--color-border)]" : ""
-                  }`}
-                >
-                  <div className="flex items-center gap-3">
-                    <span className="grid h-8 w-8 place-items-center rounded-full bg-white/5 text-xs font-medium text-[var(--color-muted)]">
-                      {r.name
-                        .split(" ")
-                        .map((n) => n[0])
-                        .slice(0, 2)
-                        .join("")}
-                    </span>
-                    <div>
-                      <p className="text-sm leading-tight">{r.name}</p>
-                      <p className="text-xs text-[var(--color-faint)]">{r.role}</p>
-                    </div>
+          <div className="rule">
+            {rows.map((r) => (
+              <div
+                key={r.name}
+                className="flex items-center justify-between gap-3 border-b border-[var(--color-line)] py-3.5 last:border-b-0"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="grid h-8 w-8 place-items-center rounded-full border border-[var(--color-line-2)] font-grotesk text-[0.7rem] text-[var(--color-dim)]">
+                    {r.name
+                      .split(" ")
+                      .map((n) => n[0])
+                      .slice(0, 2)
+                      .join("")}
+                  </span>
+                  <div>
+                    <p className="text-[0.9rem] leading-tight">{r.name}</p>
+                    <p className="index mt-0.5">{r.dept}</p>
                   </div>
-                  <span
-                    className={`rounded-full border px-2.5 py-0.5 text-[11px] font-medium capitalize ${badge(
-                      r.status
-                    )}`}
-                  >
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <span className="index hidden sm:block">{r.t}</span>
+                  <span className="flex items-center gap-2 font-grotesk text-[0.78rem] text-[var(--color-ink-2)]">
+                    <span className={`h-1.5 w-1.5 rounded-full ${dot(r.status)}`} />
                     {r.status}
                   </span>
                 </div>
-              ))}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* summary */}
+        <div className="flex flex-col gap-6 p-5">
+          <div>
+            <div className="flex items-baseline justify-between">
+              <span className="index">Assinaturas</span>
+              <span className="font-grotesk text-sm text-[var(--color-dim)]">35 / 48</span>
+            </div>
+            <p className="display mt-2 text-5xl">73%</p>
+            <div className="mt-3 h-px w-full bg-[var(--color-line)]">
+              <div className="h-px w-[73%] bg-[var(--color-bone)]" />
             </div>
           </div>
 
-          {/* side panel */}
-          <div className="flex flex-col gap-4 bg-[var(--color-surface)] p-5">
-            <div>
-              <p className="text-xs text-[var(--color-faint)]">Progresso do lote</p>
-              <p className="mt-1 font-display text-3xl font-semibold">
-                72<span className="text-[var(--color-muted)]">%</span>
-              </p>
-              <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
-                <div className="h-full w-[72%] rounded-full bg-[var(--color-accent)]" />
+          <div className="rule pt-5">
+            {[
+              ["Visualizados", "41"],
+              ["Assinados", "35"],
+              ["Pendentes", "13"],
+            ].map(([k, v]) => (
+              <div
+                key={k}
+                className="flex items-center justify-between border-b border-[var(--color-line)] py-3 last:border-b-0"
+              >
+                <span className="text-[0.85rem] text-[var(--color-dim)]">{k}</span>
+                <span className="font-grotesk text-sm tabular-nums">{v}</span>
               </div>
-            </div>
+            ))}
+          </div>
 
-            <div className="grid grid-cols-2 gap-3">
-              {[
-                { k: "Assinados", v: "35" },
-                { k: "Visualizados", v: "41" },
-                { k: "Pendentes", v: "13" },
-                { k: "Enviados", v: "48" },
-              ].map((s) => (
-                <div key={s.k} className="rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-soft)] p-3">
-                  <p className="font-display text-xl font-semibold">{s.v}</p>
-                  <p className="text-[11px] text-[var(--color-faint)]">{s.k}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex items-start gap-3 rounded-xl border border-[var(--color-accent)]/25 bg-[var(--color-accent)]/[0.06] p-3">
-              <IconBell width={18} height={18} className="mt-0.5 shrink-0 text-[var(--color-accent)]" />
-              <p className="text-xs text-[var(--color-muted)]">
-                <span className="text-[var(--color-text)]">Mariana Costa</span> assinou o
-                holerite há 2 minutos.
-              </p>
-            </div>
+          <div className="rule flex items-center gap-2 pt-4 text-[0.78rem] text-[var(--color-dim)]">
+            <span className="blink h-1.5 w-1.5 rounded-full bg-[var(--color-bone)]" />
+            Mariana Costa assinou agora há pouco
           </div>
         </div>
       </div>
@@ -202,20 +191,47 @@ function HeroMockup() {
   );
 }
 
+function MetricBand() {
+  const metrics = [
+    ["100%", "do processo automatizado"],
+    ["30 dias", "de teste, sem compromisso"],
+    ["3 apps", "contabilidade, empresa e funcionário"],
+    ["Tempo real", "leitura e assinatura rastreadas"],
+  ];
+  return (
+    <div className="rule grid grid-cols-2 gap-x-8 gap-y-10 pt-10 md:grid-cols-4">
+      {metrics.map(([v, k], i) => (
+        <Reveal key={k} delay={i * 80}>
+          <p className="display text-3xl md:text-4xl">{v}</p>
+          <p className="mt-2 text-[0.85rem] leading-snug text-[var(--color-dim)]">{k}</p>
+        </Reveal>
+      ))}
+    </div>
+  );
+}
+
 function LogoMarquee() {
-  const names = ["Domínio", "Alterdata", "Questor", "Folhamatic", "Sage", "Prosoft", "Nasajon"];
+  const names = [
+    "Domínio",
+    "Alterdata",
+    "Questor",
+    "Folhamatic",
+    "Sage",
+    "Prosoft",
+    "Nasajon",
+  ];
   const list = [...names, ...names];
   return (
-    <div className="relative">
-      <p className="mb-6 text-center text-xs uppercase tracking-[0.18em] text-[var(--color-faint)]">
-        Processa os PDFs dos principais sistemas contábeis do mercado
+    <div>
+      <p className="wrap eyebrow mb-7 text-center">
+        Compatível com os principais sistemas contábeis
       </p>
-      <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,#000_12%,#000_88%,transparent)]">
-        <div className="marquee-track flex w-max items-center gap-12">
+      <div className="relative overflow-hidden border-y border-[var(--color-line)] py-6 [mask-image:linear-gradient(to_right,transparent,#000_10%,#000_90%,transparent)]">
+        <div className="marquee-track flex w-max items-center gap-16">
           {list.map((n, i) => (
             <span
               key={`${n}-${i}`}
-              className="font-display text-lg font-medium text-[var(--color-faint)] transition-colors hover:text-[var(--color-muted)]"
+              className="font-grotesk text-xl text-[var(--color-faint)]"
             >
               {n}
             </span>
